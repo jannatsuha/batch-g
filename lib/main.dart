@@ -1,3 +1,4 @@
+import 'package:batch_g/image_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -47,26 +48,32 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               Expanded(
-                child: ListView.builder(
-                    itemCount: imgList.length,
-                    itemBuilder: (context,index){
-                      return Column(
-                        children: [
-                          Container(
-                              height: 200,
-                              width: 200,
-                              child:
-                              Image.asset
-                                (imgList[index],
-                                fit: BoxFit.cover,)
+                child: GridView.count(
+                    crossAxisCount: 4,
+                  children: imgList.map(
+                        (item) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(
+                                      builder: (context)=>
+                                          ImageView(image: item)));
+                            },
+                            child: Container(
+                      height: 200,
+                      width: 200,
+                      child:
+                      Image.asset
+                            (item,
+                            fit: BoxFit.cover,)
+                  ),
                           ),
-                          Text("Pic: Flower")
-                        ],
-                      );
-                    }
+                        ),
+                  ).toList(),
                 ),
               )
-
+              //Image.asset("assets/image/weather.gif")
             ],
           ),
         )
