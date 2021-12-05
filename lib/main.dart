@@ -10,7 +10,14 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
-
+List<String> imgList=[
+  "assets/image/img6.jpg",
+  "assets/image/img5.jpg",
+  "assets/image/img4.jpeg",
+  "assets/image/img3.png",
+  "assets/image/img2.jpg",
+  "assets/image/img1.jpeg"
+];
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
@@ -39,28 +46,27 @@ class _MyHomePageState extends State<MyHomePage> {
         Center(
           child: Column(
             children: [
-              Container(
-                  height: 200,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.red,
-                      width: 6
-                    )
-                  ),
-                  child:
-                  Image.network("https://live.staticflickr.com/168/433822493_8bd3f1fd02_b.jpg",
-                  fit: BoxFit.cover,)
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Container(
-                height: 200,
-                  width: 200,
-                  child:
-                  Image.asset("assets/image/img5.jpg",
-                  fit: BoxFit.cover,))
+              Expanded(
+                child: ListView.builder(
+                    itemCount: imgList.length,
+                    itemBuilder: (context,index){
+                      return Column(
+                        children: [
+                          Container(
+                              height: 200,
+                              width: 200,
+                              child:
+                              Image.asset
+                                (imgList[index],
+                                fit: BoxFit.cover,)
+                          ),
+                          Text("Pic: Flower")
+                        ],
+                      );
+                    }
+                ),
+              )
+
             ],
           ),
         )
